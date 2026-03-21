@@ -1,0 +1,13 @@
+# Angular
+front-end/node_modules/
+front-end/.angular/
+front-end/dist/
+
+# Spring Boot
+product-management/target/
+product-management/.mvn/wrapper/maven-wrapper.jar
+
+# IDE
+.vscode/
+.idea/
+*.iml

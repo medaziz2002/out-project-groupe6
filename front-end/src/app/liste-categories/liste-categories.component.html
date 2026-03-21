@@ -1,0 +1,68 @@
+<div class="container mt-4">
+  <div class="card shadow mb-4">
+    <div class="card-body">
+
+      <!-- Form Add / Edit -->
+      <div class="col-sm-6 mb-4">
+        <h5>{{ isAdd ? 'Add Category' : 'Edit Category' }}</h5>
+
+        <div class="mt-2" [hidden]="isAdd">
+          <label>Category ID</label>
+          <input type="text" [(ngModel)]="selectedCategory.categoryId"
+            name="categoryId" class="form-control w-25" readonly>
+        </div>
+
+        <div class="mt-2">
+          <label>Category Name</label>
+          <input type="text" [(ngModel)]="selectedCategory.categoryName"
+            name="categoryName" class="form-control"
+            placeholder="Enter category name...">
+        </div>
+
+        <div class="mt-2">
+          <label>Category Description</label>
+          <input type="text" [(ngModel)]="selectedCategory.categoryDescription"
+            name="categoryDescription" class="form-control"
+            placeholder="Enter category description...">
+        </div>
+
+        <div class="mt-2">
+          <button class="btn btn-success me-2"
+            [disabled]="!selectedCategory.categoryName"
+            (click)="saveCategory()">
+            {{ isAdd ? 'Add' : 'Update' }}
+          </button>
+          <button class="btn btn-secondary" (click)="resetForm()">
+            Cancel
+          </button>
+        </div>
+      </div>
+
+      <!-- Table -->
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Category Name</th>
+            <th>Description</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for(cat of categories; track cat.categoryId) {
+            <tr>
+              <td>{{ cat.categoryId }}</td>
+              <td>{{ cat.categoryName }}</td>
+              <td>{{ cat.categoryDescription }}</td>
+              <td>
+                <a class="btn btn-success me-2" (click)="editCategory(cat)">Edit</a>
+                <a class="btn btn-danger" (click)="deleteCategory(cat.categoryId)">Delete</a>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+</div>
