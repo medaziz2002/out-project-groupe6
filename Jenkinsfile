@@ -10,14 +10,18 @@ pipeline {
     stages {
         stage('Backend - Unit Tests') {
             steps {
+            dir('product-management') {
                 script {
                     echo "Building and testing backend"
                     bat 'mvn clean test'
                 }
             }
+        }
             post {
                 always {
+                dir('product-management') {
                     junit 'product-management/target/surefire-reports/*.xml'
+                }
                 }
                 failure {
                     error "Backend unit tests failed"
@@ -27,6 +31,7 @@ pipeline {
 
         stage('Frontend - Build') {
             steps {
+            dir('product-management') {
                 script {
                     echo "Installing frontend dependencies"
                     bat 'npm ci'
@@ -34,6 +39,7 @@ pipeline {
                     echo "Building frontend"
                     bat 'npm run build'
                 }
+            }
             }
             post {
                 failure {
