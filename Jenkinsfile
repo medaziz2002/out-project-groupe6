@@ -30,20 +30,13 @@ pipeline {
         }
 
         stage('Frontend - Build') {
+            when {
+                expression { fileExists('front-end/package.json') }
+            }
             steps {
-            dir('frontend') {
-                script {
-                    echo "Installing frontend dependencies"
-                    bat 'npm ci'
-
-                    echo "Building frontend"
+                dir('front-end') {
+                    bat 'npm install'
                     bat 'npm run build'
-                }
-            }
-            }
-            post {
-                failure {
-                    error "Frontend build failed"
                 }
             }
         }
