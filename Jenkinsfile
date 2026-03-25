@@ -20,7 +20,7 @@ pipeline {
             post {
                 always {
                 dir('product-management') {
-                    junit 'product-management/target/surefire-reports/*.xml'
+                    junit 'target/surefire-reports/*.xml'
                 }
                 }
                 failure {
@@ -31,7 +31,7 @@ pipeline {
 
         stage('Frontend - Build') {
             steps {
-            dir('product-management') {
+            dir('frontend') {
                 script {
                     echo "Installing frontend dependencies"
                     bat 'npm ci'
