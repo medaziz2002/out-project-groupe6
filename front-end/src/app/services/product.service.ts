@@ -95,4 +95,6 @@ deleteCategory(id: number) {
     imageFormData.append('image', file, filename);
     return this.http.post(`${this.apiURL}/image/uploadFS/${idProd}`, imageFormData);
   }
+
 }
+

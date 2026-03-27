@@ -1,0 +1,40 @@
+<div class="container">
+
+  <form class="form-inline">
+    <div class="form-group mx-sm-3 mb-2 mt-2">
+      <label>Product Name</label>
+      <input [(ngModel)]="searchTerm" name="searchTerm" class="form-control">
+    </div>
+  </form>
+
+  <div class="card shadow mb-4">
+    <div class="card-body">
+      <table class="table table-striped">
+        <tr>
+          <th>Id</th>
+          <th>Name</th>
+          <th>Price</th>
+          <th>Creation Date</th>
+          <th>Category</th>
+        </tr>
+
+        @for(product of products | searchFilter: searchTerm; track product.productId) {
+          <tbody>
+            <tr>
+              <td>{{product.productId}}</td>
+              <td>{{product.productName}}</td>
+              <td>{{product.productPrice}}</td>
+              <td>{{product.creationDate | date:'dd/MM/yyyy'}}</td>
+
+              @if(product.categoryDTO) {
+                <td>{{product.categoryDTO.categoryName}}</td>
+              } @else {
+                <td>No Category</td>
+              }
+            </tr>
+          </tbody>
+        }
+      </table>
+    </div>
+  </div>
+</div>

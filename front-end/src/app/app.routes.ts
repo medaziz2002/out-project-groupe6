@@ -15,3 +15,4 @@ export const routes: Routes = [
   { path: 'categories', component: ListCategoriesComponent },
   { path: 'update-product/:id', component: UpdateProductComponent},
 ];
+
