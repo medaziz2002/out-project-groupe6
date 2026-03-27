@@ -2,8 +2,10 @@ package com.example.productmanagement.controller;
 
 import com.example.productmanagement.dto.ProductDTO;
 import com.example.productmanagement.entity.Image;
+import com.example.productmanagement.entity.Product;
 import com.example.productmanagement.service.ImageService;
 import com.example.productmanagement.service.ProductService;
+import com.example.productmanagement.mapper.ProductMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,6 +21,7 @@ public class ProductController {
 
     private final ProductService productService;
     private final ImageService imageService;
+    private final ProductMapper productMapper;
 
     @GetMapping
     public List<ProductDTO> getAllProducts() {
@@ -29,12 +32,22 @@ public ResponseEntity<Void> deleteProduct(@PathVariable Long id) {
     productService.delete(id);
     return ResponseEntity.noContent().build();
 }
+    @GetMapping("/{id}")
+    public ProductDTO getProduct(@PathVariable Long id) {
+        Product product = productService.getProduct(id);
+        return productMapper.toResponse(product);
+    }
 
 @GetMapping("/prodscat/{categoryId}")
 public List<ProductDTO> searchByCategory(@PathVariable Long categoryId) {
     return productService.searchByCategory(categoryId);
 }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<ProductDTO> updateProduct(@PathVariable Long id,
+                                                      @RequestBody ProductDTO request) {
+        return ResponseEntity.ok(productService.updateProduct(id, request));
+    }
 
 
 
