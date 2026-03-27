@@ -36,7 +36,7 @@ class ProductManagementApplicationTest {
 
         SpringApplication app = new SpringApplication(ProductManagementApplication.class);
 
-        // 🔥 IMPORTANT : désactive le serveur web (Tomcat)
+        // IMPORTANT : désactive le serveur web (Tomcat)
         app.setWebApplicationType(WebApplicationType.NONE);
 
         try (ConfigurableApplicationContext context = app.run()) {
