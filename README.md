@@ -80,5 +80,8 @@ Par Safae :  Claude, Recherches Google
 Parmi les diifficultés que j'ai rencontré, il y'a mise en place des tests et la configuration de la pipeline Jenkins.
 
 Par Mohamed : 
+- J’ai utilisé l’intelligence artificielle pour la résolution des conflits de versions, ainsi que lors des merges après les pull requests.
+
 Par Abdias : 
+- J’ai utilisé l’intelligence artificielle pour configurer Jacoco et pour faciliter un peu la mise en place des tests unitaires et d’intégration.
 
