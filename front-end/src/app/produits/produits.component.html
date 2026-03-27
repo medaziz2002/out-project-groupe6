@@ -44,8 +44,7 @@
               <td>
   <button class="btn btn-danger" (click)="deleteProduct(product)">Delete</button>
 </td>
-
-              <td><a class="btn btn-success">Edit</a></td>
+              <td><a class="btn btn-success" (click)="goToUpdate(product.productId)">Edit</a></td>
             </tr>
           </tbody>
         }

@@ -89,5 +89,21 @@ public List<ProductDTO> searchByCategory(Long categoryId) {
             .collect(Collectors.toList());
 }
 
+    public ProductDTO updateProduct(Long id, ProductDTO request) {
+        Product exist=repository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Product not found with id: " + id));
+        exist.setProductName(request.getProductName());
+        exist.setProductPrice(request.getProductPrice());
+        exist.setCreationDate(request.getCreationDate());
+
+        if(request.getCategoryId() != null){
+            var category=categoryRepository.findById(request.getCategoryId())
+                    .orElseThrow(() -> new RuntimeException("product not found with id: " + id));
+            exist.setCategory(category);
+        }
+
+        return mapper.toResponse(repository.save(exist));
+    }
+
 
 }

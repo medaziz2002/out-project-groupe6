@@ -21,6 +21,8 @@ export class ProductService {
 
   constructor(private http: HttpClient) { }
 
+
+
   listProducts(): Observable<Product[]> {
     return this.http.get<Product[]>(this.apiURL);
   }
@@ -38,7 +40,7 @@ export class ProductService {
     return this.http.get<Product>(`${this.apiURL}/${id}`);
   }
 
-  updateProduct(prod: Product): Observable<Product> {
+  updateProduct(id: number, prod: Product): Observable<Product> {
     return this.http.put<Product>(`${this.apiURL}/${prod.productId}`, prod, httpOptions);
   }
 
@@ -93,4 +95,6 @@ deleteCategory(id: number) {
     imageFormData.append('image', file, filename);
     return this.http.post(`${this.apiURL}/image/uploadFS/${idProd}`, imageFormData);
   }
+
 }
+
