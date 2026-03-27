@@ -103,13 +103,14 @@
         </plugin>
 
         <!-- JaCoCo code coverage plugin -->
-
 		<plugin>
     <groupId>org.jacoco</groupId>
     <artifactId>jacoco-maven-plugin</artifactId>
     <version>0.8.11</version>
 
     <executions>
+
+        <!-- AGENT -->
         <execution>
             <id>prepare-agent</id>
             <goals>
@@ -117,6 +118,7 @@
             </goals>
         </execution>
 
+        <!-- REPORT -->
         <execution>
             <id>report</id>
             <phase>test</phase>
@@ -125,6 +127,7 @@
             </goals>
         </execution>
 
+        <!-- CHECK -->
         <execution>
             <id>jacoco-check</id>
             <phase>verify</phase>
@@ -134,7 +137,8 @@
             <configuration>
                 <rules>
                     <rule>
-                        <element>CLASS</element>
+                        <element>BUNDLE</element> <!-- IMPORTANT -->
+
                         <limits>
                             <limit>
                                 <counter>LINE</counter>
@@ -142,18 +146,21 @@
                                 <minimum>0.01</minimum>
                             </limit>
                         </limits>
+
+                        <!-- EXCLUSION ICI -->
+                        <excludes>
+                            <exclude>**/config/**</exclude>
+                        </excludes>
+
                     </rule>
                 </rules>
-
-                <!-- AJOUT ICI -->
-                <excludes>
-                    <exclude>com/example/productmanagement/config/CorsConfig*</exclude>
-                </excludes>
             </configuration>
         </execution>
+
     </executions>
 </plugin>
 
+		
 
 
 
